@@ -1,3 +1,3 @@
 # Introduction
 
-
+A book describing a more scalable way to process HL7 messages by using messaging.
