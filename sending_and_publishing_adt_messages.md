@@ -1,6 +1,6 @@
 # Sending and Publishing ADT Messages
 
-## Levers
+## Configurable Levers
 
 One can configure a series of properties for both the publishers and consumers that can make a difference in the performance of the system.
 
