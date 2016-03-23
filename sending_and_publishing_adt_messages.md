@@ -10,7 +10,7 @@ One can configure a series of properties for the various components that can mak
 |  | *Unique Accounts* | <ul><li>unique accounts = number of facilities x number of accounts/facility</li><li>Controlling this in the production environment will not be possible.</li></ul> | 30 = 3x10 |
 | Main Router | *Number of routers* |<ul><li>The routers handle creating/destroying temporary queues for account sequences</li></ul> | 6 |
 |  | *Prefetch Count* | <ul><li>By default, MassTransit will prefetch 1 message/worker.  In this case, the main router is set up for 1 worker in order to maintain message sequence.</li></ul> | 25 |
-| Router | *Prefetch Count* | <ul><li>By default, MassTransit will prefetch 1 message/worker.  In this case, the main router is set up for 1 worker in order to maintain message sequence.</li></ul> | 1 |
+| Router | *Prefetch Count* | <ul><li>By default, MassTransit will prefetch 1 message/worker.  In this case, the main router is set up for 1 worker in order to maintain message sequence.</li></ul> | 25 |
 | Worker(s) | *Number of workers* | <ul><li>Mass Transit recommends 4 workers/core</li><li>Per process, a Mass Transit bus consumes messages as 1 thread with a pre-fetch count equal by default to the number of workers it services.</li></ul> | 8 |
 |  | *Receive Timeout (ms)* | <ul><li>When workers consume from a temporary queue, they indicate a timeout period.  If a message is not received within that period, it will move on to the next account to process.</li></ul> | 100 |
 | | *Max Messages to Process* | <ul><li>In addition to a timeout period for moving on to another account, the workers also limit the number of messages they will process before moving on.</li></ul> | 7 |
