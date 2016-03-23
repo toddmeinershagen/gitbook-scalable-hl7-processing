@@ -19,9 +19,9 @@ ProcessorCount=2
 Memory=4.00 GB RAM
 ```
 
-### With 0 - 15,000 Queues
+### With 0 - 15,000 Queues (Non-clustered)
 
-Below are the results for 4 iterations with 0, 150, 1,500, and 15,000 existing queues.
+Below are the results for 4 iterations with 0, 150, 1,500, and 15,000 existing queues.  It was conducted against a non-clustered Rabbit server.
 
 ```ini
 BenchmarkDotNet=v0.9.2.0
@@ -39,7 +39,29 @@ TargetCount=500
 | CreateAndDestroyQueue | 16.7268 ms | 27.7536 ms | 16.1928 ms | 133.9115 ms |                           150 |
 | CreateAndDestroyQueue | 18.0483 ms | 27.5022 ms | 12.8215 ms | 147.6780 ms |                          1,500 |
 | CreateAndDestroyQueue | 17.9970 ms | 25.4694 ms |  7.6663 ms | 110.8189 ms |                         15,000 |
- 
+
+### With 0 - 15,000 Queues (clustered)
+
+Below are the results of 4 iterations with 0, 150, 1,500, and 15,000 existing queues.  It was conducted on a Rabbit cluster of two nodes using mirrored clustering.
+
+```ini
+BenchmarkDotNet=v0.9.2.0
+OS=Microsoft Windows NT 6.1.7601 Service Pack 1
+Processor=Intel(R) Xeon(R) CPU E7-L8867  @ 2.13GHzIntel(R) Xeon(R) CPU E7-L8867  @ 2.13GHz, ProcessorCount=2
+Frequency=10000000 ticks, Resolution=100.0000 ns
+HostCLR=MS.NET 4.0.30319.34209, Arch=32-bit RELEASE
+
+TargetCount=500  
+```
+
+|                Method |        Min |       Mean |     StdDev |         Max | DesiredNumberOfExistingQueues |
+| ---------------------- |----------- |----------- |----------- |------------ |------------------------------ |
+| CreateAndDestroyQueue | 34.8848 ms | 49.3922 ms | 37.5925 ms | 626.2283 ms |                             0 |
+| CreateAndDestroyQueue | 35.3080 ms | 51.9788 ms | 20.9110 ms | 278.8768 ms |                           150 |
+| CreateAndDestroyQueue | 35.7645 ms | 49.6903 ms | 15.4349 ms | 186.2789 ms |                          1,500 |
+| CreateAndDestroyQueue | 38.9271 ms | 59.7106 ms | 46.4486 ms | 472.7796 ms |                         15,000 |
+
+
 ### With 150,000 Queues
 
 After loading 150,000 existing queues, the memory was at 97%. The server eventually failed and could not return any requests or function properly.  Thus, we were not able to run the create/destroy benchmarks for this scenario.
